@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "intel-image-classification"
+version = "0.1.0"
+description = "Classification of natural scenes around the world"
+authors = ["Eric Dasse <christ.gououi@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+loguru = "^0.7.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+flake8 = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
