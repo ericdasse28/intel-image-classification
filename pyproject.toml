@@ -12,6 +12,7 @@ loguru = "^0.7.2"
 pandas = "^2.2.2"
 seaborn = "^0.13.2"
 tensorflow = "^2.16.1"
+scikit-image = "^0.23.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4.2"
