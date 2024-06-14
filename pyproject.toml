@@ -10,6 +10,7 @@ readme = "README.md"
 python = "^3.10"
 loguru = "^0.7.2"
 dvc = "^3.51.2"
+dvc-gdrive = "^3.0.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4.2"
