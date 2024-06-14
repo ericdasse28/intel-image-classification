@@ -1,0 +1,6 @@
+outs:
+- md5: 1e82fb952693a30e04377f121f229068.dir
+  size: 212876095
+  nfiles: 14034
+  hash: md5
+  path: seg_train

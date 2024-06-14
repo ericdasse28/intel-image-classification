@@ -1,0 +1,6 @@
+outs:
+- md5: a07db8970f5751fd9d5359778faa44cc.dir
+  size: 45382818
+  nfiles: 3000
+  hash: md5
+  path: seg_test
