@@ -72,5 +72,5 @@ The reason is DVC doesn't need a snapshot of the whole repository. It can just u
 
 10. Upload large files to DVC remote
 
-    a. Setup DVC remote
-    b. `dvc push`
+- [Add a DVC remote](https://dvc.org/doc/command-reference/remote/add). You can use your local computer or [Google Drive as a remote](https://dvc.org/doc/user-guide/data-management/remote-storage/google-drive) if you don't have access to a cloud provider or a distant machine (via SSH or HTTP). See [here](https://dvc.org/doc/user-guide/data-management/remote-storage#supported-storage-types) for a list of possible DVC storage types
+- Push datasets to remote: `dvc push`
