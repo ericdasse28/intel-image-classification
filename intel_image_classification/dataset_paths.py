@@ -9,7 +9,7 @@ def _get_project_root():
     return project_root
 
 
-def get_training_data_path():
+def get_raw_training_data_dir():
     project_root = _get_project_root()
 
     return project_root / "data/raw/seg_train"

@@ -8,14 +8,14 @@ from matplotlib import pyplot as plt
 
 from intel_image_classification.dataset_paths import (
     get_prepared_data_dir,
-    get_training_data_path,
+    get_raw_training_data_dir,
 )
 
 
 def shrink_dataset_images(new_size: tuple):
     """Preprocess training dataset."""
 
-    train_path = get_training_data_path()
+    train_path = get_raw_training_data_dir()
 
     for folder in os.listdir(f"{train_path}/seg_train"):
         files = glob.glob(pathname=f"{train_path}/seg_train/{folder}/*.jpg")
