@@ -35,11 +35,10 @@ def shrink_dataset_images(new_size: tuple):
             resized_image = cv2.resize(image, new_size)
 
             file_name = os.path.basename(file)
-            prepared_train_path = get_prepared_data_dir() / "train"
-            plt.imsave(
-                prepared_train_path / f"{folder}/{file_name}",
-                resized_image,
-            )
+            prepared_image_dir = get_prepared_data_dir() / f"train/{folder}"
+            os.makedirs(prepared_image_dir, exist_ok=True)
+            prepared_image_path = prepared_image_dir / file_name
+            plt.imsave(prepared_image_path, resized_image)
 
 
 def main():
