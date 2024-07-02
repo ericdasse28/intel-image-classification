@@ -6,6 +6,9 @@ authors = ["Eric Dasse <christ.gououi@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 
+[tool.poetry.scripts]
+preprocess-images = "intel_image_classification.preprocess_dataset:main"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 loguru = "^0.7.2"
