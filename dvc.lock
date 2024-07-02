@@ -1,0 +1,20 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: poetry run preprocess-images
+    deps:
+    - path: data/raw/
+      hash: md5
+      md5: 0b79f55f0ec10d41e3de9f1da478bac9.dir
+      size: 368859965
+      nfiles: 24339
+    - path: intel_image_classification/preprocess_dataset.py
+      hash: md5
+      md5: af0c72d471f6cebca0620be9bcc38e7c
+      size: 1096
+    outs:
+    - path: data/prepared
+      hash: md5
+      md5: 9216eac96d7d631fc622b8a9d57ce615.dir
+      size: 48280766
+      nfiles: 14034
