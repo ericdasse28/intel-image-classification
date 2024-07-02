@@ -19,3 +19,9 @@ def get_prepared_data_dir():
     project_root = _get_project_root()
 
     return project_root / "data/prepared"
+
+
+def get_prepared_train_data_dir():
+    prepared_data_dir = get_prepared_data_dir()
+
+    return prepared_data_dir / "train"
