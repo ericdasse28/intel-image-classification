@@ -1,0 +1,8 @@
+stages:
+  preprocess:
+    cmd: poetry run preprocess-images
+    deps:
+    - data/raw/
+    - intel_image_classification/preprocess_dataset.py
+    outs:
+    - data/prepared
