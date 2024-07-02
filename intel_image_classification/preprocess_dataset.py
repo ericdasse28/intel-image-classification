@@ -2,24 +2,14 @@
 
 import glob
 import os
-from pathlib import Path
 
 import cv2
 from matplotlib import pyplot as plt
 
-
-def get_training_data_path():
-    current_folder = Path(__file__).parent
-    project_root = current_folder.parent
-
-    return project_root / "data/raw/seg_train"
-
-
-def get_prepared_data_dir():
-    current_folder = Path(__file__).parent
-    project_root = current_folder.parent
-
-    return project_root / "data/prepared"
+from intel_image_classification.dataset_paths import (
+    get_prepared_data_dir,
+    get_training_data_path,
+)
 
 
 def shrink_dataset_images(new_size: tuple):
