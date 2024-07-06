@@ -1,8 +1,8 @@
 stages:
   preprocess:
-    cmd: poetry run preprocess-images
+    cmd: poetry run preprocess-images -d data/raw/seg_train/seg_train -o data/prepared/train
     deps:
-    - data/raw/
+    - data/raw/seg_train/seg_train
     - intel_image_classification/preprocess_dataset.py
     outs:
-    - data/prepared
+    - data/prepared/train
