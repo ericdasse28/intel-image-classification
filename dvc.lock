@@ -10,8 +10,8 @@ stages:
       nfiles: 14034
     - path: intel_image_classification/preprocess_dataset.py
       hash: md5
-      md5: 509c74e10c395d186377fc04373a020b
-      size: 2196
+      md5: bc466e35c2328aa458998fece677cbd6
+      size: 2333
     outs:
     - path: data/prepared/train
       hash: md5
