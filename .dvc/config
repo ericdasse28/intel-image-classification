@@ -1,1 +1,3 @@
-
+['remote "origin"']
+    url = s3://dvc
+    endpointurl = https://dagshub.com/ericdasse28/intel-image-classification.s3
