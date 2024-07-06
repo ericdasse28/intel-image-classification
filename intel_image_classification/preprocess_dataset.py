@@ -63,12 +63,15 @@ def save_preprocessed_images(images: list[Image], save_dir: os.PathLike):
 
 def main():
     parser = argparse.ArgumentParser()
-    dataset_path = parser.add_argument("--dataset-path", "-d")
-    preprocessed_dataset_path = parser.add_argument(
+    parser.add_argument("--dataset-path", "-d")
+    parser.add_argument(
         "--preproc-dataset-path",
         "-o",
     )
-    parser.parse_args()
+
+    args = parser.parse_args()
+    dataset_path = args.dataset_path
+    preprocessed_dataset_path = args.preproc_dataset_path
 
     category_folders = os.listdir(dataset_path)
     for category_folder in category_folders:
