@@ -9,6 +9,8 @@ from pathlib import Path
 import cv2
 from matplotlib import pyplot as plt
 
+from loguru import logger
+
 
 @dataclass
 class Image:
@@ -75,9 +77,12 @@ def main():
 
     category_folders = os.listdir(dataset_path)
     for category_folder in category_folders:
+        logger.info(f"Preprocessing {category_folder} images...")
         images = collect_images(f"{dataset_path}/{category_folder}")
         preprocessed_images = preprocess_images(images)
         save_preprocessed_images(
             preprocessed_images,
             preprocessed_dataset_path,
         )
+
+    logger.success("Images preprocessed!")
