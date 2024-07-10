@@ -6,3 +6,10 @@ stages:
     - intel_image_classification/preprocess_dataset.py
     outs:
     - data/prepared/train
+  train:
+    cmd: poetry run train --dataset-path data/prepared/train -o model.pkl
+    deps:
+    - data/prepared/train/
+    - intel_image_classification/train.py
+    outs:
+    - model.pkl
