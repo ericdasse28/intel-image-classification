@@ -8,6 +8,7 @@ readme = "README.md"
 
 [tool.poetry.scripts]
 preprocess-images = "intel_image_classification.preprocess_dataset:main"
+train = "intel_image_classification.train:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
