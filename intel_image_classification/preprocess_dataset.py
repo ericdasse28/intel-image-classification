@@ -1,7 +1,5 @@
 """Preprocess Intel image classification dataset."""
 
-from dataclasses import dataclass
-import glob
 import os
 import argparse
 from pathlib import Path
@@ -11,26 +9,7 @@ from matplotlib import pyplot as plt
 
 from loguru import logger
 
-
-@dataclass
-class Image:
-    name: str
-    content: cv2.typing.MatLike
-    category: str
-
-
-def collect_images(category_folder):
-    """Collect images from category folder"""
-    image_files = glob.glob(pathname=f"{category_folder}/*.jpg")
-
-    return [
-        Image(
-            name=os.path.basename(image_file),
-            content=plt.imread(image_file),
-            category=os.path.basename(category_folder),
-        )
-        for image_file in image_files
-    ]
+from intel_image_classification.image_helpers import Image, collect_images
 
 
 def preprocess_images(images: list[Image]) -> list[Image]:
