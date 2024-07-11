@@ -24,15 +24,9 @@ def get_training_data(images: list[Image]):
 
 
 def normalize_data(X: np.ndarray):
-    return _normalize_in_chunks(X.astype(np.float32))
-
-
-def _normalize_in_chunks(X: np.ndarray, chunk_size: int = 1000):
-    num_samples = X.shape[0]
-
-    for start in range(0, num_samples, chunk_size):
-        end = min(start + chunk_size, num_samples)
-        X[start:end] = X[start:end].astype(np.float32) / 255.0
+    with np.nditer(X, flags=["multi_index"], op_flags=["readwrite"]) as it:
+        for x in it:
+            x[...] = np.float(x) / 255.0
 
     return X
 
