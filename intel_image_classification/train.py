@@ -37,6 +37,7 @@ def get_features_and_labels(images: list[Image]):
 
 
 def normalize_data(X: np.ndarray):
+    # To save memory, we perform normalization in place
     with np.nditer(X, flags=["multi_index"], op_flags=["readwrite"]) as it:
         for x in it:
             x[...] = float(x) / 255.0
