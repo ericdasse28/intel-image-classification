@@ -1,13 +1,14 @@
 """Train the model."""
 
-import joblib
-
 import argparse
 import os
 
+import joblib
+import numpy as np
 import tensorflow as tf
 from keras import layers
-import numpy as np
+from loguru import logger
+
 from intel_image_classification.image_helpers import Image, collect_images
 
 
@@ -23,7 +24,17 @@ def get_training_data(images: list[Image]):
 
 
 def normalize_data(X: np.ndarray):
-    return X.astype(np.float32) / 255.0
+    return _normalize_in_chunks(X.astype(np.float32))
+
+
+def _normalize_in_chunks(X: np.ndarray, chunk_size: int = 1000):
+    num_samples = X.shape[0]
+
+    for start in range(0, num_samples, chunk_size):
+        end = min(start + chunk_size, num_samples)
+        X[start:end] = X[start:end].astype(np.float32) / 255.0
+
+    return X
 
 
 def train(X_train, y_train):
@@ -72,12 +83,20 @@ def main():
     dataset_path = args.dataset_path
     model_save_path = args.model_save_path
 
+    logger.info(f"Loading dataset from {dataset_path}...")
     images = []
     category_folders = os.listdir(dataset_path)
     for category_folder in category_folders:
+        logger.info(f"Collecting images from {category_folder}")
         images.extend(collect_images(f"{dataset_path}/{category_folder}"))
 
+    logger.info("Getting training data...")
     X_train, y_train = get_training_data(images)
+    logger.info("Normalizing training data...")
     X_train = normalize_data(X_train)
+
+    logger.info("Training the model...")
     model = train(X_train, y_train)
+
+    logger.info(f"Saving model to {model_save_path}")
     joblib.dump(model, model_save_path)
