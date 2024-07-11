@@ -26,7 +26,7 @@ def get_training_data(images: list[Image]):
 def normalize_data(X: np.ndarray):
     with np.nditer(X, flags=["multi_index"], op_flags=["readwrite"]) as it:
         for x in it:
-            x[...] = np.float(x) / 255.0
+            x[...] = float(x) / 255.0
 
     return X
 
