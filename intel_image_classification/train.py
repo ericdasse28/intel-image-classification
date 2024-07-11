@@ -12,13 +12,26 @@ from loguru import logger
 from intel_image_classification.image_helpers import Image, collect_images
 
 
+def get_label_index(label: str) -> int:
+    nature_labels_dict = {
+        "buildings": 0,
+        "forest": 1,
+        "glacier": 2,
+        "mountain": 3,
+        "sea": 4,
+        "street": 5,
+    }
+
+    return nature_labels_dict[label]
+
+
 def get_training_data(images: list[Image]):
     X_train = []
     y_train = []
 
     for image in images:
         X_train.append(image.content)
-        y_train.append(image.category)
+        y_train.append(get_label_index(image.category))
 
     return np.array(X_train), np.array(y_train)
 
