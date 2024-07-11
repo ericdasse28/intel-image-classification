@@ -25,7 +25,7 @@ def get_label_index(label: str) -> int:
     return nature_labels_dict[label]
 
 
-def get_training_data(images: list[Image]):
+def get_features_and_labels(images: list[Image]):
     X_train = []
     y_train = []
 
@@ -98,7 +98,7 @@ def main():
         images.extend(collect_images(f"{dataset_path}/{category_folder}"))
 
     logger.info("Getting training data...")
-    X_train, y_train = get_training_data(images)
+    X_train, y_train = get_features_and_labels(images)
     logger.info("Normalizing training data...")
     X_train = normalize_data(X_train)
 
