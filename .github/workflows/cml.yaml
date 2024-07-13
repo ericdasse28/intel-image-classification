@@ -1,0 +1,36 @@
+name: CML & DVC
+on: [push]
+permissions:
+  # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
+  contents: write
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Install system dependencies
+        run: |
+          sudo apt update
+          sudo apt install libc6
+      - uses: packetcoders/action-setup-cache-python-poetry@main
+        with:
+          python-version: 3.12.3
+          poetry-version: 1.8.1
+          install-args: --only main
+      - uses: iterative/setup-cml@v1
+      - uses: iterative/setup-dvc@v1
+      - name: Setup DagsHub DVC remote
+        run: |
+          dvc remote modify origin --local access_key_id ${{ secrets.DAGSHUB_TOKEN }}
+          dvc remote modify origin --local secret_access_key ${{ secrets.DAGSHUB_TOKEN }}
+      - name: Train model
+        run: |
+          dvc pull
+          dvc repro
+      - name: Commit changes in dvc.lock
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update dvc.lock after training
+          file_pattern: dvc.lock
