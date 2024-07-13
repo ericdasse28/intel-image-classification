@@ -18,3 +18,20 @@ stages:
       md5: ba69f02e032ecb767866174c09bf8515.dir
       size: 48280766
       nfiles: 14034
+  train:
+    cmd: poetry run train --dataset-path data/prepared/train -o model.pkl
+    deps:
+    - path: data/prepared/train/
+      hash: md5
+      md5: ba69f02e032ecb767866174c09bf8515.dir
+      size: 48280766
+      nfiles: 14034
+    - path: intel_image_classification/train.py
+      hash: md5
+      md5: b5d8945869be0bcdf97a55083b2beb12
+      size: 3269
+    outs:
+    - path: model.pkl
+      hash: md5
+      md5: 447e5a1a3f07d80b0de83bbb01e910a1
+      size: 20837690
