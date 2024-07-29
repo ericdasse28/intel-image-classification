@@ -5,8 +5,7 @@ import os
 
 import joblib
 import numpy as np
-import tensorflow as tf
-from keras import Sequential, layers
+from keras import Sequential, layers, losses
 from loguru import logger
 
 from intel_image_classification.image_helpers import Image, collect_images
@@ -73,7 +72,7 @@ def train(X_train, y_train):
 
     model.compile(
         optimizer="adam",
-        loss=tf.keras.losses.SparseCategoricalCrossentropy(),
+        loss=losses.SparseCategoricalCrossentropy(),
         metrics=["accuracy"],
     )
 
