@@ -5,6 +5,7 @@ import os
 
 import joblib
 import numpy as np
+import yaml
 from keras import Sequential, layers, losses
 from loguru import logger
 
@@ -86,6 +87,13 @@ def train(X_train, y_train, *, batch_size, validation_split, epochs):
     return model
 
 
+def get_training_params():
+    with open("../params.yaml") as params_file:
+        training_params = yaml.safe_load(params_file)["train"]
+
+    return training_params
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset-path", "-d")
@@ -108,7 +116,8 @@ def main():
     X_train = normalize_data(X_train)
 
     logger.info("Training the model...")
-    model = train(X_train, y_train)
+    training_params = get_training_params()
+    model = train(X_train, y_train, **training_params)
 
     logger.info(f"Saving model to {model_save_path}")
     joblib.dump(model, model_save_path)
