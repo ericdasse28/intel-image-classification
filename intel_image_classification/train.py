@@ -44,8 +44,7 @@ def normalize_data(X: np.ndarray):
     return X
 
 
-def train(X_train, y_train):
-    num_classes = 6
+def train(X_train, y_train, *, batch_size, validation_split, epochs):
     model = Sequential(
         [
             layers.Conv2D(
@@ -66,7 +65,7 @@ def train(X_train, y_train):
             layers.Flatten(),  # Flatten layer
             layers.Dense(128, activation="relu"),  # Fully connected layer
             layers.Dropout(0.5),  # Dropout layer
-            layers.Dense(num_classes, activation="softmax"),  # Output layer
+            layers.Dense(6, activation="softmax"),  # Output layer
         ]
     )
 
@@ -79,9 +78,9 @@ def train(X_train, y_train):
     model.fit(
         X_train,
         y_train,
-        epochs=20,
-        batch_size=2,
-        validation_split=0.2,
+        epochs=epochs,
+        batch_size=batch_size,
+        validation_split=validation_split,
     )
 
     return model
