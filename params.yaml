@@ -1,0 +1,4 @@
+train:
+  batch_size: 2
+  validation_split: 0.2
+  epochs: 20
