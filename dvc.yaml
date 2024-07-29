@@ -11,5 +11,7 @@ stages:
     deps:
     - data/prepared/train/
     - intel_image_classification/train.py
+    params:
+      - train
     outs:
     - model.pkl
