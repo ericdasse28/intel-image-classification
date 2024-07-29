@@ -45,6 +45,13 @@ def normalize_data(X: np.ndarray):
     return X
 
 
+def get_training_data(images: list[Image]):
+    X_train, y_train = get_features_and_labels(images)
+    X_train = normalize_data(X_train)
+
+    return X_train, y_train
+
+
 def train(X_train, y_train, *, batch_size, validation_split, epochs):
     model = Sequential(
         [
@@ -87,6 +94,15 @@ def train(X_train, y_train, *, batch_size, validation_split, epochs):
     return model
 
 
+def get_training_images(dataset_path):
+    images = []
+    category_folders = os.listdir(dataset_path)
+    for category_folder in category_folders:
+        logger.info(f"Collecting images from {category_folder}")
+        images.extend(collect_images(f"{dataset_path}/{category_folder}"))
+    return images
+
+
 def get_training_params():
     with open("../params.yaml") as params_file:
         training_params = yaml.safe_load(params_file)["train"]
@@ -104,16 +120,10 @@ def main():
     model_save_path = args.model_save_path
 
     logger.info(f"Loading dataset from {dataset_path}...")
-    images = []
-    category_folders = os.listdir(dataset_path)
-    for category_folder in category_folders:
-        logger.info(f"Collecting images from {category_folder}")
-        images.extend(collect_images(f"{dataset_path}/{category_folder}"))
+    images = get_training_images(dataset_path)
 
     logger.info("Getting training data...")
-    X_train, y_train = get_features_and_labels(images)
-    logger.info("Normalizing training data...")
-    X_train = normalize_data(X_train)
+    X_train, y_train = get_training_data(images)
 
     logger.info("Training the model...")
     training_params = get_training_params()
