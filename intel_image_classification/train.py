@@ -6,7 +6,7 @@ import os
 import joblib
 import numpy as np
 import tensorflow as tf
-from keras import layers
+from keras import Sequential, layers
 from loguru import logger
 
 from intel_image_classification.image_helpers import Image, collect_images
@@ -47,7 +47,7 @@ def normalize_data(X: np.ndarray):
 
 def train(X_train, y_train):
     num_classes = 6
-    model = tf.keras.Sequential(
+    model = Sequential(
         [
             layers.Conv2D(
                 filters=32, kernel_size=(3, 3), activation="relu"
