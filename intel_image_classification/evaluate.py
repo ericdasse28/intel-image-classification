@@ -1,9 +1,10 @@
 import argparse
 import json
 from pathlib import Path
-from pkgutil import get_data
 
 import joblib
+
+from intel_image_classification.dataset import get_data
 
 
 def get_testing_data():
