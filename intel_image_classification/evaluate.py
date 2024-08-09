@@ -27,7 +27,7 @@ def main():
 
     X_test, y_test = get_testing_data()
     model = load_model(model_path)
-    _, test_accuracy = model.evaluate(X_test, y_test)
-    metrics = {"accuracy": test_accuracy}
+    test_loss, test_accuracy = model.evaluate(X_test, y_test)
+    metrics = {"accuracy": test_accuracy, "loss": test_loss}
 
     json.dump(metrics, metrics_save_path)
