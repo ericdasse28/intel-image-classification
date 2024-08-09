@@ -12,6 +12,13 @@ stages:
     - data/prepared/train/
     - intel_image_classification/train.py
     params:
-      - train
+    - train
     outs:
     - model.pkl
+  evaluate:
+    cmd: poetry run evaluate --model-path model.pkl --metrics-save-path metrics.json
+    deps:
+    - intel_image_classification/evaluate.py
+    - model.pkl
+    metrics:
+    - metrics/metrics.json
