@@ -18,8 +18,8 @@ def load_model(model_path: Path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("model-path")
-    parser.add_argument("metrics-save-path")
+    parser.add_argument("--model-path")
+    parser.add_argument("--metrics-save-path")
     args = parser.parse_args()
 
     model_path = args.model_path
