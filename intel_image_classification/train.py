@@ -2,6 +2,7 @@
 
 import argparse
 import os
+from pathlib import Path
 
 import joblib
 import numpy as np
@@ -104,7 +105,8 @@ def get_training_images(dataset_path):
 
 
 def get_training_params():
-    with open("../params.yaml") as params_file:
+    params_path = Path(__file__).parent.parent / "params.yaml"
+    with open(params_path) as params_file:
         training_params = yaml.safe_load(params_file)["train"]
 
     return training_params
