@@ -1,20 +1,69 @@
 schema: '2.0'
 stages:
   preprocess:
-    cmd: poetry run preprocess-images -d data/raw/seg_train/seg_train -o data/prepared/train
+    cmd: poetry run preprocess-images -d data/raw -o data/prepared
     deps:
-    - path: data/raw/seg_train/seg_train
+    - path: data/raw
       hash: md5
-      md5: 26ead25fdb2268128d40ade86d29e228.dir
-      size: 212876095
-      nfiles: 14034
+      md5: 0b79f55f0ec10d41e3de9f1da478bac9.dir
+      size: 368859965
+      nfiles: 24339
     - path: intel_image_classification/preprocess_dataset.py
       hash: md5
-      md5: b4b66a6783b6e83399bcf05c7f96eec7
-      size: 1893
+      md5: e6d93c1614259f227de1881d5ff33458
+      size: 2234
     outs:
+    - path: data/prepared/test
+      hash: md5
+      md5: de1844a58ad4f556eda23a2b858ab681.dir
+      size: 10299352
+      nfiles: 3000
     - path: data/prepared/train
       hash: md5
       md5: ba69f02e032ecb767866174c09bf8515.dir
       size: 48280766
       nfiles: 14034
+  train:
+    cmd: poetry run train --dataset-path data/prepared/train -o model.pkl
+    deps:
+    - path: data/prepared/train/
+      hash: md5
+      md5: ba69f02e032ecb767866174c09bf8515.dir
+      size: 48280766
+      nfiles: 14034
+    - path: intel_image_classification/train.py
+      hash: md5
+      md5: b9f73b3c7c4cb87e4a71c365843a80d9
+      size: 3792
+    params:
+      params.yaml:
+        train:
+          batch_size: 2
+          validation_split: 0.2
+          epochs: 20
+    outs:
+    - path: model.pkl
+      hash: md5
+      md5: f01e9637448b6c21713464c6199e149b
+      size: 20837690
+  evaluate:
+    cmd: poetry run evaluate --model-path model.pkl --metrics-save-path metrics.json
+    deps:
+    - path: data/prepared/test
+      hash: md5
+      md5: de1844a58ad4f556eda23a2b858ab681.dir
+      size: 10299352
+      nfiles: 3000
+    - path: intel_image_classification/evaluate.py
+      hash: md5
+      md5: 539f78b374998032fea6f684ce769d6c
+      size: 897
+    - path: model.pkl
+      hash: md5
+      md5: f01e9637448b6c21713464c6199e149b
+      size: 20837690
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 7c0f18509f7c2acb4aa947444e30ab4f
+      size: 60
