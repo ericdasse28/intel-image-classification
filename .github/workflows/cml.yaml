@@ -1,6 +1,8 @@
 name: CML & DVC
 on: [push]
 permissions:
+  # Essential to allow CML to write in pull requests via the GitHub token
+  pull-requests: write
   # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
   contents: write
 jobs:
