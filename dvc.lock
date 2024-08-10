@@ -44,7 +44,7 @@ stages:
     outs:
     - path: model.pkl
       hash: md5
-      md5: f01e9637448b6c21713464c6199e149b
+      md5: 92ce8df96ee6281490fab9b4d9e34e97
       size: 20837690
   evaluate:
     cmd: poetry run evaluate --model-path model.pkl --metrics-save-path metrics.json
@@ -56,14 +56,14 @@ stages:
       nfiles: 3000
     - path: intel_image_classification/evaluate.py
       hash: md5
-      md5: 539f78b374998032fea6f684ce769d6c
-      size: 897
+      md5: 025e1d3511ba282d18cd2d4ca136fa4c
+      size: 1045
     - path: model.pkl
       hash: md5
-      md5: f01e9637448b6c21713464c6199e149b
+      md5: 92ce8df96ee6281490fab9b4d9e34e97
       size: 20837690
     outs:
     - path: metrics.json
       hash: md5
-      md5: 7c0f18509f7c2acb4aa947444e30ab4f
-      size: 60
+      md5: bcd2485ffe136b6e768a46138d6f7aca
+      size: 59
