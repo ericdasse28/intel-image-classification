@@ -29,11 +29,11 @@ jobs:
         run: |
           dvc pull --allow-missing
           dvc repro
-          - name: Commit changes in dvc.lock
-          uses: stefanzweifel/git-auto-commit-action@v5
-          with:
-            commit_message: Update dvc.lock after training
-            file_pattern: dvc.lock
+      - name: Commit changes in dvc.lock
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update dvc.lock after training
+          file_pattern: dvc.lock
       - name: Create CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,4 +42,3 @@ jobs:
           git fetch --depth=1 origin main:main
           dvc metrics diff --md main >> report.md
           cml comment create report.md
-
