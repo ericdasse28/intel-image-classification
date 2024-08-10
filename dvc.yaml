@@ -23,4 +23,4 @@ stages:
     - intel_image_classification/evaluate.py
     - model.pkl
     metrics:
-    - metrics/metrics.json
+    - metrics.json
