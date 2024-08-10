@@ -31,5 +31,5 @@ def main():
     test_loss, test_accuracy = model.evaluate(X_test, y_test)
     metrics = {"accuracy": test_accuracy, "loss": test_loss}
 
-    with open(metrics_save_path) as metrics_file:
+    with open(metrics_save_path, "w") as metrics_file:
         json.dump(metrics, metrics_file)
