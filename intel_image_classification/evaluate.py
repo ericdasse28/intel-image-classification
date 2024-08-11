@@ -1,5 +1,4 @@
 import argparse
-import json
 from pathlib import Path
 
 import joblib
@@ -22,11 +21,9 @@ def load_model(model_path: Path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-path")
-    parser.add_argument("--metrics-save-path")
     args = parser.parse_args()
 
     model_path = args.model_path
-    metrics_save_path = args.metrics_save_path
 
     logger.info("Model evaluation...")
     X_test, y_test = get_testing_data()

@@ -17,10 +17,8 @@ stages:
     outs:
     - model.pkl
   evaluate:
-    cmd: poetry run evaluate --model-path model.pkl --metrics-save-path metrics.json
+    cmd: poetry run evaluate --model-path model.pkl
     deps:
     - data/prepared/test
     - intel_image_classification/evaluate.py
     - model.pkl
-    metrics:
-    - metrics.json
