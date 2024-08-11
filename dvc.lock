@@ -44,7 +44,7 @@ stages:
     outs:
     - path: model.pkl
       hash: md5
-      md5: 19268fdbfa5374753305dce682c822f1
+      md5: 7ee1b75f2a48c598ee863912e09a161d
       size: 20837690
   evaluate:
     cmd: poetry run evaluate --model-path model.pkl --metrics-save-path metrics.json
@@ -60,10 +60,10 @@ stages:
       size: 1045
     - path: model.pkl
       hash: md5
-      md5: 19268fdbfa5374753305dce682c822f1
+      md5: 7ee1b75f2a48c598ee863912e09a161d
       size: 20837690
     outs:
     - path: metrics.json
       hash: md5
-      md5: b4780ea90fc3a4de2683253ed3da2740
-      size: 61
+      md5: 947787b4d89bb35a56b09e6d1e944047
+      size: 60
