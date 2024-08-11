@@ -42,9 +42,14 @@ stages:
           validation_split: 0.2
           epochs: 20
     outs:
+    - path: dvclive
+      hash: md5
+      md5: e9c3f725f53de2fb4bceea6f66a69ab2.dir
+      size: 1989
+      nfiles: 5
     - path: model.pkl
       hash: md5
-      md5: 773ea4204c18f2bf69397ef5a2c6d281
+      md5: 8e7a84c4f6550f7a1cc7a617ddfd00dc
       size: 20837690
   evaluate:
     cmd: poetry run evaluate --model-path model.pkl
@@ -54,11 +59,16 @@ stages:
       md5: de1844a58ad4f556eda23a2b858ab681.dir
       size: 10299352
       nfiles: 3000
+    - path: dvclive
+      hash: md5
+      md5: ba5831e1a25597a0b0d745c5dddbd01e.dir
+      size: 44
+      nfiles: 1
     - path: intel_image_classification/evaluate.py
       hash: md5
       md5: 90eaac68d93374c072354c8f41cb3fc9
       size: 884
     - path: model.pkl
       hash: md5
-      md5: 773ea4204c18f2bf69397ef5a2c6d281
+      md5: 8e7a84c4f6550f7a1cc7a617ddfd00dc
       size: 20837690
