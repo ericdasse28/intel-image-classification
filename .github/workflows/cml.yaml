@@ -36,6 +36,9 @@ jobs:
         with:
           commit_message: Update dvc.lock after training
           file_pattern: dvc.lock
+      - name: Pushing DVC tracked data to remote
+        run: |
+          dvc push
       - name: Create CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
