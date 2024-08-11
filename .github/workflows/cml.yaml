@@ -1,6 +1,8 @@
 name: CML & DVC
 on: [push]
 permissions:
+  # Essential to allow CML to write in pull requests via the GitHub token
+  pull-requests: write
   # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
   contents: write
 jobs:
@@ -34,3 +36,11 @@ jobs:
         with:
           commit_message: Update dvc.lock after training
           file_pattern: dvc.lock
+      - name: Create CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## Metrics: workflow vs. main" >> report.md
+          git fetch --depth=1 origin main:main
+          dvc metrics diff --md main >> report.md
+          cml comment create report.md

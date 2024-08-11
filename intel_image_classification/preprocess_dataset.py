@@ -1,13 +1,12 @@
 """Preprocess Intel image classification dataset."""
 
-import os
 import argparse
+import os
 from pathlib import Path
 
 import cv2
-from matplotlib import pyplot as plt
-
 from loguru import logger
+from matplotlib import pyplot as plt
 
 from intel_image_classification.image_helpers import Image, collect_images
 
@@ -42,26 +41,37 @@ def save_preprocessed_images(images: list[Image], save_dir: os.PathLike):
         plt.imsave(preprocessed_image_path, image.content)
 
 
+def generate_prepared_data(raw_path: Path, prepared_path: Path):
+    category_folders = os.listdir(raw_path)
+    for category_folder in category_folders:
+        logger.info(f"Preprocessing {category_folder} images...")
+        images = collect_images(f"{raw_path}/{category_folder}")
+        preprocessed_images = preprocess_images(images)
+        save_preprocessed_images(
+            preprocessed_images,
+            prepared_path,
+        )
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset-path", "-d")
     parser.add_argument(
-        "--preproc-dataset-path",
+        "--prepared-dataset-path",
         "-o",
     )
 
     args = parser.parse_args()
-    dataset_path = args.dataset_path
-    preprocessed_dataset_path = args.preproc_dataset_path
+    dataset_path = Path(args.dataset_path)
+    prepared_dataset_path = Path(args.prepared_dataset_path)
 
-    category_folders = os.listdir(dataset_path)
-    for category_folder in category_folders:
-        logger.info(f"Preprocessing {category_folder} images...")
-        images = collect_images(f"{dataset_path}/{category_folder}")
-        preprocessed_images = preprocess_images(images)
-        save_preprocessed_images(
-            preprocessed_images,
-            preprocessed_dataset_path,
-        )
+    generate_prepared_data(
+        raw_path=dataset_path / "seg_train/seg_train",
+        prepared_path=prepared_dataset_path / "train",
+    )
+    generate_prepared_data(
+        raw_path=dataset_path / "seg_test/seg_test",
+        prepared_path=prepared_dataset_path / "test",
+    )
 
     logger.success("Images preprocessed!")

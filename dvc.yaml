@@ -1,15 +1,26 @@
 stages:
   preprocess:
-    cmd: poetry run preprocess-images -d data/raw/seg_train/seg_train -o data/prepared/train
+    cmd: poetry run preprocess-images -d data/raw -o data/prepared
     deps:
-    - data/raw/seg_train/seg_train
+    - data/raw
     - intel_image_classification/preprocess_dataset.py
     outs:
     - data/prepared/train
+    - data/prepared/test
   train:
     cmd: poetry run train --dataset-path data/prepared/train -o model.pkl
     deps:
     - data/prepared/train/
     - intel_image_classification/train.py
+    params:
+    - train
     outs:
     - model.pkl
+  evaluate:
+    cmd: poetry run evaluate --model-path model.pkl --metrics-save-path metrics.json
+    deps:
+    - data/prepared/test
+    - intel_image_classification/evaluate.py
+    - model.pkl
+    metrics:
+    - metrics.json
