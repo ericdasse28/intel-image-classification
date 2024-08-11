@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 import joblib
+from dvclive import Live
 from loguru import logger
 
 from intel_image_classification.dataset import get_data
@@ -30,10 +31,7 @@ def main():
     logger.info("Model evaluation...")
     X_test, y_test = get_testing_data()
     model = load_model(model_path)
-    test_loss, test_accuracy = model.evaluate(X_test, y_test)
-    metrics = {"accuracy": test_accuracy, "loss": test_loss}
-    logger.info(metrics)
-
-    logger.info(f"Saving metrics to {metrics_save_path}")
-    with open(metrics_save_path, "w") as metrics_file:
-        json.dump(metrics, metrics_file)
+    with Live() as live:
+        test_loss, test_accuracy = model.evaluate(X_test, y_test)
+        live.log_metric("test_accuracy", test_loss, plot=False)
+        live.log_metric("test_accuracy", test_accuracy, plot=False)
