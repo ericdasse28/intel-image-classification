@@ -7,6 +7,8 @@ from pathlib import Path
 import joblib
 import numpy as np
 import yaml
+from dvclive import Live
+from dvclive.keras import DVCLiveCallback
 from keras import Sequential, layers, losses
 from loguru import logger
 
@@ -84,13 +86,15 @@ def train(X_train, y_train, *, batch_size, validation_split, epochs):
         metrics=["accuracy"],
     )
 
-    model.fit(
-        X_train,
-        y_train,
-        epochs=epochs,
-        batch_size=batch_size,
-        validation_split=validation_split,
-    )
+    with Live() as live:
+        model.fit(
+            X_train,
+            y_train,
+            epochs=epochs,
+            batch_size=batch_size,
+            validation_split=validation_split,
+            callbacks=[DVCLiveCallback(live=live)],
+        )
 
     return model
 
