@@ -32,7 +32,7 @@ jobs:
           dvc pull --allow-missing
           dvc repro
           # Make sure that the changes to metrics are committed
-          dvc commit
+          dvc commit --force
           dvc push
       - name: Commit pipeline changes
         uses: stefanzweifel/git-auto-commit-action@v5
