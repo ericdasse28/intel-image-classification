@@ -2,9 +2,9 @@ import argparse
 from pathlib import Path
 
 import joblib
-from dvclive import Live
 from loguru import logger
 
+from dvclive import Live
 from intel_image_classification.dataset import get_data
 
 
@@ -30,5 +30,5 @@ def main():
     model = load_model(model_path)
     with Live() as live:
         test_loss, test_accuracy = model.evaluate(X_test, y_test)
-        live.log_metric("test_accuracy", test_loss, plot=False)
+        live.log_metric("test_loss", test_loss, plot=False)
         live.log_metric("test_accuracy", test_accuracy, plot=False)
