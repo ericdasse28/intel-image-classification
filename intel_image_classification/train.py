@@ -7,11 +7,11 @@ from pathlib import Path
 import joblib
 import numpy as np
 import yaml
-from dvclive import Live
 from dvclive.keras import DVCLiveCallback
 from keras import Sequential, layers, losses
 from loguru import logger
 
+from dvclive import Live
 from intel_image_classification.image_helpers import Image, collect_images
 
 
@@ -137,3 +137,5 @@ def main():
 
     logger.info(f"Saving model to {model_save_path}")
     joblib.dump(model, model_save_path)
+
+    logger.success("Training successful!")
