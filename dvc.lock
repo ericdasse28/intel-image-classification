@@ -61,13 +61,13 @@ stages:
       nfiles: 3000
     - path: dvclive
       hash: md5
-      md5: ff5dbb18d84a027db0bca8638f4ca631.dir
-      size: 100
-      nfiles: 1
+      md5: f6a75ec95cbce76508870db2864001ef.dir
+      size: 2078
+      nfiles: 5
     - path: intel_image_classification/evaluate.py
       hash: md5
-      md5: f3b88bc96879aa2602d045dd68bea27f
-      size: 880
+      md5: 90fcdbacb1254781fcff7208296fd775
+      size: 891
     - path: model.pkl
       hash: md5
       md5: 56cb2cd0e3b40f8d1f73f785a2f30e38
