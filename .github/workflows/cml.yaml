@@ -31,11 +31,15 @@ jobs:
         run: |
           dvc pull --allow-missing
           dvc repro
-      - name: Commit changes in dvc.lock
+      - name: Commit pipeline changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Update dvc.lock after training
-          file_pattern: dvc.lock
+          commit_message: Reproduce training pipeline
+          file_pattern: |
+            .gitignore
+            dvc.yaml
+            dvc.lock
+            dvclive
       - name: Pushing DVC tracked data to remote
         run: |
           dvc push
