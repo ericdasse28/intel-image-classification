@@ -61,7 +61,7 @@ stages:
       nfiles: 3000
     - path: dvclive
       hash: md5
-      md5: f6a75ec95cbce76508870db2864001ef.dir
+      md5: b449f0c78029056a1ea1412228bcc80e.dir
       size: 2078
       nfiles: 5
     - path: intel_image_classification/evaluate.py
