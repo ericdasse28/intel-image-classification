@@ -33,8 +33,8 @@ stages:
       nfiles: 14034
     - path: intel_image_classification/train.py
       hash: md5
-      md5: 08b4da2b0cf3b5d319d15c0d2636ff19
-      size: 3964
+      md5: 0588a9267dbc76ba2fff0025c325a848
+      size: 4008
     params:
       params.yaml:
         train:
@@ -44,12 +44,12 @@ stages:
     outs:
     - path: dvclive
       hash: md5
-      md5: e9c3f725f53de2fb4bceea6f66a69ab2.dir
-      size: 1989
+      md5: 423c68892733674ab8f58c0fe156cd3e.dir
+      size: 1981
       nfiles: 5
     - path: model.pkl
       hash: md5
-      md5: 8e7a84c4f6550f7a1cc7a617ddfd00dc
+      md5: 56cb2cd0e3b40f8d1f73f785a2f30e38
       size: 20837690
   evaluate:
     cmd: poetry run evaluate --model-path model.pkl
@@ -61,14 +61,14 @@ stages:
       nfiles: 3000
     - path: dvclive
       hash: md5
-      md5: ba5831e1a25597a0b0d745c5dddbd01e.dir
-      size: 44
+      md5: 54b24cb765606ac8acb60a6a390fcb28.dir
+      size: 82
       nfiles: 1
     - path: intel_image_classification/evaluate.py
       hash: md5
-      md5: 90eaac68d93374c072354c8f41cb3fc9
-      size: 884
+      md5: e67bfdf46d5c8212d9a71ae916f485d6
+      size: 880
     - path: model.pkl
       hash: md5
-      md5: 8e7a84c4f6550f7a1cc7a617ddfd00dc
+      md5: 56cb2cd0e3b40f8d1f73f785a2f30e38
       size: 20837690

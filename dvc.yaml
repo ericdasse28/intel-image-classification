@@ -24,3 +24,5 @@ stages:
     - intel_image_classification/evaluate.py
     - model.pkl
     - dvclive
+metrics:
+- dvclive/metrics.json
