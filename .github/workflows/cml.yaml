@@ -44,7 +44,7 @@ jobs:
         run: |
           dvc push
       - name: Create CML report
-        if: github.event_name == 'pull_request'
+        if: github.ref_name != 'main'
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
