@@ -44,8 +44,8 @@ stages:
     outs:
     - path: dvclive
       hash: md5
-      md5: 423c68892733674ab8f58c0fe156cd3e.dir
-      size: 1981
+      md5: f6a75ec95cbce76508870db2864001ef.dir
+      size: 2078
       nfiles: 5
     - path: model.pkl
       hash: md5
