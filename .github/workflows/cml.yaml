@@ -35,11 +35,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Reproduce training pipeline
-          file_pattern: |
-            .gitignore
-            dvc.yaml
-            dvc.lock
-            dvclive
+          file_pattern: .
       - name: Pushing DVC tracked data to remote
         run: |
           dvc push
