@@ -31,14 +31,12 @@ jobs:
         run: |
           dvc pull --allow-missing
           dvc repro
+          dvc push
       - name: Commit pipeline changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Reproduce training pipeline
           file_pattern: .
-      - name: Pushing DVC tracked data to remote
-        run: |
-          dvc push
       - name: Create CML report
         if: github.ref_name != 'main'
         env:
