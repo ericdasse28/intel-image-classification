@@ -28,7 +28,7 @@ def main():
     logger.info("Model evaluation...")
     X_test, y_test = get_testing_data()
     model = load_model(model_path)
-    with Live() as live:
+    with Live(resume=True) as live:
         test_loss, test_accuracy = model.evaluate(X_test, y_test)
         live.log_metric("test/accuracy", test_accuracy, plot=False)
         live.log_metric("test/loss", test_loss, plot=False)
