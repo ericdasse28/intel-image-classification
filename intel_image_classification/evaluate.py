@@ -30,5 +30,5 @@ def main():
     model = load_model(model_path)
     with Live() as live:
         test_loss, test_accuracy = model.evaluate(X_test, y_test)
-        live.log_metric("test_loss", test_loss, plot=False)
-        live.log_metric("test_accuracy", test_accuracy, plot=False)
+        live.log_metric("test/accuracy", test_accuracy, plot=False)
+        live.log_metric("test/loss", test_loss, plot=False)
