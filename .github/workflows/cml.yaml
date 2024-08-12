@@ -31,16 +31,16 @@ jobs:
         run: |
           dvc pull --allow-missing
           dvc repro
-      - name: Commit changes in dvc.lock
+          # Make sure that the changes to metrics are committed
+          dvc commit --force
+          dvc push
+      - name: Commit pipeline changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Update dvc.lock after training
-          file_pattern: dvc.lock
-      - name: Pushing DVC tracked data to remote
-        run: |
-          dvc push
+          commit_message: Reproduce training pipeline
+          file_pattern: .
       - name: Create CML report
-        if: github.event_name == 'pull_request'
+        if: github.ref_name != 'main'
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

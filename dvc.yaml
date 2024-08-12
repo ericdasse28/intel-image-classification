@@ -16,11 +16,16 @@ stages:
     - train
     outs:
     - model.pkl
+    - dvclive
   evaluate:
-    cmd: poetry run evaluate --model-path model.pkl --metrics-save-path metrics.json
+    cmd: poetry run evaluate --model-path model.pkl
     deps:
     - data/prepared/test
     - intel_image_classification/evaluate.py
     - model.pkl
-    metrics:
-    - metrics.json
+    - dvclive
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step
